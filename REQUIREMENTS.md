@@ -204,3 +204,115 @@ login.pending → login.fulfilled → restoreSession → logout
 ```
 
 State cuối phải bằng initial state và không còn `user/token`.
+
+---
+
+# Các vấn đề chưa giải quyết trong code hiện tại
+
+Cập nhật lần cuối: **2026-08-17**.
+
+Phần routing của Milestone 01 đã được triển khai với `/`, `/login`, `/boards`,
+`/boards/demo`, route guard, guest guard và cơ chế lưu URL được yêu cầu trước
+khi chuyển tới trang đăng nhập. Các mục dưới đây là những phần còn thiếu hoặc
+chưa khớp với requirement.
+
+## Ưu tiên cao — Hoàn thiện luồng authentication
+
+- [ ] Đổi tài khoản demo trong `authApi.ts` về đúng requirement:
+  `demo@trello.local` / `123456`.
+- [ ] Đổi token trả về khi đăng nhập thành chính xác `demo-token`.
+- [ ] Credentials sai phải reject với đúng thông báo
+  `Email hoặc mật khẩu không chính xác`.
+- [ ] Loại bỏ `password?: string` khỏi type `AuthUser`. Password chỉ được tồn
+  tại trong dữ liệu mô phỏng nội bộ và không được phép xuất hiện trong kiểu
+  user dùng bởi Redux hoặc persistence.
+- [ ] Đảm bảo password không xuất hiện trong Redux DevTools. Hiện
+  `createAsyncThunk` vẫn đưa credentials vào `action.meta.arg`.
+
+## Ưu tiên cao — Nối persistence vào Login và Logout
+
+- [ ] Sau login thành công, dùng `saveAuth({ user, token })` thay vì ghi trực
+  tiếp key `auth` trong `Login.tsx`.
+- [ ] Xoá đoạn `localStorage.setItem("auth", ...)` còn sót trong `Login.tsx`.
+- [ ] Khi logout, gọi `clearStoredAuth()` để xoá key `trello.auth.v1` cùng lúc
+  với việc xoá Redux state.
+- [ ] Kiểm tra lại luồng: login → refresh `/boards/demo` → session vẫn còn.
+- [ ] Kiểm tra lại luồng: logout → refresh → không khôi phục session cũ.
+
+`getStoredAuth`, `restoreSession` và bước khởi động đọc session đã tồn tại;
+JSON hỏng cũng đã được bắt lỗi và xoá an toàn. Phần còn thiếu là kết nối các
+helper này vào luồng login/logout.
+
+## Ưu tiên cao — Validation và accessibility của Login
+
+- [ ] Thêm local state cho lỗi email và password.
+- [ ] Validate email bắt buộc và đúng định dạng cơ bản trước khi dispatch.
+- [ ] Validate password bắt buộc và có ít nhất 6 ký tự trước khi dispatch.
+- [ ] Hiển thị lỗi ngay dưới field tương ứng.
+- [ ] Dùng `useId` để tạo ID cho input và error message.
+- [ ] Input lỗi phải có `aria-invalid` và `aria-describedby`.
+- [ ] Dùng `useRef` để focus lại email sau khi đăng nhập thất bại.
+- [ ] Dùng `useEffect` cho side effect thật, ví dụ cập nhật `document.title`
+  hoặc xử lý focus sau lỗi đăng nhập.
+- [ ] Disable cả email, password và submit button khi `status === "loading"`.
+- [ ] Hiển thị thông tin tài khoản demo trên trang Login.
+- [ ] Form không hợp lệ tuyệt đối không được dispatch `login` thunk.
+
+## Ưu tiên trung bình — Selectors và custom hook
+
+- [ ] Thêm selector `selectCurrentUser`.
+- [ ] Thêm selector `selectAuthStatus`.
+- [ ] Thêm selector `selectAuthError`.
+- [ ] Thêm selector `selectIsAuthenticated`; giá trị phải được suy ra từ
+  `user` và `token`, không thêm field mới vào Redux state.
+- [ ] Tạo custom hook `useAuth` và dùng tại Login, route guards và AppShell.
+- [ ] Tránh destructure toàn bộ `state.auth` tại component khi chỉ cần một
+  giá trị dẫn xuất.
+
+## Ưu tiên trung bình — Header và Logout
+
+- [ ] Lấy tên, email và initials trong `AppShell` từ current user của Redux;
+  không hard-code `Hải Nguyễn`, `hai.nguyen@example.com` và `HN`.
+- [ ] Sửa markup logout đang lồng `<button>` bên trong `<button>`. Chỉ giữ một
+  button duy nhất và gắn `onClick={handleLogout}` vào button đó.
+- [ ] Nút logout phải vừa dispatch `logout()` vừa xoá persisted session trước
+  khi chuyển tới `/login`.
+- [ ] Xác nhận logout bằng bàn phím hoạt động và không tạo React DOM nesting
+  warning trong console.
+
+## Ưu tiên trung bình — Kiểm thử và chất lượng
+
+- [ ] Cài đặt test runner và thêm script `test` chạy được từ `package.json`.
+- [ ] Viết reducer test tối thiểu cho chuỗi
+  `login.pending → login.fulfilled → restoreSession → logout`.
+- [ ] Kiểm tra state cuối bằng initial state và không còn `user/token`.
+- [ ] Thêm test cho `getStoredAuth` với JSON hỏng, thiếu user và thiếu token.
+- [ ] Bỏ `console.log` / `console.error` phục vụ debug khỏi luồng Login hoặc
+  thay bằng cơ chế logging phù hợp.
+- [ ] Xử lý React DOM warning do nested button trong menu tài khoản.
+- [ ] Chạy lại toàn bộ checklist nghiệm thu sau khi hoàn tất các mục trên.
+
+## Cần xác nhận về phạm vi dependency
+
+- [ ] Requirement Milestone 01 chỉ cho phép Redux Toolkit, React Redux và
+  React Router DOM, nhưng dự án hiện có thêm Axios và Tailwind CSS. Cần quyết
+  định cập nhật requirement để chấp nhận các dependency này hoặc loại bỏ
+  dependency không cần thiết trước khi nghiệm thu nghiêm ngặt.
+
+## Những phần đã đạt, không cần làm lại
+
+- [x] Có đúng shape cơ bản của `AuthState`.
+- [x] Có typed hooks `useAppDispatch` và `useAppSelector`.
+- [x] Login thunk mô phỏng delay 800 ms.
+- [x] Pending xoá lỗi cũ; fulfilled lưu session vào Redux; rejected xoá
+  user/token và đặt trạng thái failed.
+- [x] Có action `restoreSession` và `logout`.
+- [x] Có helper đọc/xoá JSON hỏng an toàn từ localStorage.
+- [x] `/` redirect theo trạng thái đăng nhập.
+- [x] Guest bị chặn khỏi private routes bằng `<Navigate>`.
+- [x] User đã đăng nhập bị chuyển khỏi `/login`.
+- [x] Login giữ và quay lại URL đã yêu cầu trước đó.
+- [x] `/boards` có board card dẫn tới `/boards/demo`.
+- [x] `/boards/demo` tái sử dụng Kanban hiện tại.
+- [x] Có trang 404.
+- [x] `npm run build` thành công tại lần kiểm tra gần nhất.
