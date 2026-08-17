@@ -32,7 +32,7 @@ export default function TaskDetail() {
   const entry = taskId ? tasksById.get(taskId) : undefined;
 
   if (!entry) {
-    return <Navigate to="/board" replace />;
+    return <Navigate to="/boards/demo" replace />;
   }
 
   const { columnTitle, task } = entry;
@@ -64,7 +64,7 @@ export default function TaskDetail() {
             className="grid size-[38px] shrink-0 cursor-pointer place-items-center rounded-full border-0 bg-transparent text-[26px] leading-none text-[#44546f] hover:bg-[#f0f1f5] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[rgba(99,91,255,0.28)]"
             type="button"
             aria-label="Đóng chi tiết công việc"
-            onClick={() => navigate("/board")}
+            onClick={() => navigate("/boards/demo")}
           >
             ×
           </button>

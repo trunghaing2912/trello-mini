@@ -1,7 +1,15 @@
 import { useState, type FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { login } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  type Location,
+} from "react-router-dom";
+
+type LoginLocationState = {
+  from?: Pick<Location, "pathname" | "search" | "hash">;
+};
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +19,9 @@ const Login = () => {
 
   const { user, error, status } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  const routeState = location.state as LoginLocationState | null;
+  const requestedLocation = routeState?.from;
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +36,11 @@ const Login = () => {
 
       console.log("Login success:", result);
       localStorage.setItem("auth", JSON.stringify(result));
-      navigate("/board");
+      const destination = requestedLocation
+        ? `${requestedLocation.pathname}${requestedLocation.search}${requestedLocation.hash}`
+        : "/boards";
+
+      navigate(destination, { replace: true });
     } catch (error) {
       console.error("Login failed:", error);
     }

@@ -83,7 +83,7 @@ function TaskCard({ card }: { card: TaskCardData }) {
     <button
       className="block w-full cursor-pointer rounded-[11px] border border-[#e5e8ef] bg-white p-3.5 text-left text-inherit shadow-[0_1px_2px_rgba(23,43,77,0.06)] hover:border-[#c8c5ff] hover:shadow-[0_6px_16px_rgba(23,43,77,0.08)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[rgba(99,91,255,0.35)]"
       type="button"
-      onClick={() => navigate(`/board/${card.id}`)}
+      onClick={() => navigate(`/boards/demo/${card.id}`)}
       aria-label={`Xem chi tiết: ${card.title}`}
     >
       {card.labels?.length ? (

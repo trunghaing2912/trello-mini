@@ -7,6 +7,7 @@ export interface AuthUser {
   id: string;
   name: string;
   email: string;
+  password?: string;
 }
 
 export interface LoginResponse {
@@ -14,16 +15,32 @@ export interface LoginResponse {
   user: AuthUser;
 }
 
+const demoUser: AuthUser = {
+  id: "user-1",
+  name: "Hải Nguyễn",
+  email: "hai@gmail.com",
+  password: "123456",
+};
+
 const demoToken: LoginResponse = {
   token:
     "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6InRpYm5ldC11c2VyIiwiZ3JhbnRUeXBlIjoiYWNjZXNzVG9rZW4iLCJpYXQiOjE3ODY4NDY3MzMsImV4cCI6MTc4Njg1MDQ1M30.FKvyGWNVkmarm3NBVVZQz-yC5rgc0S6ODyF-uuU92Fy2nQuySfVxPDueIvh-HCE_8jpaXARWqYhzRkhEJ7TzLA",
   user: {
     id: "user-1",
     name: "Hải Nguyễn",
-    email: "demo@trello.local",
+    email: "hai@gmail.com",
   },
 };
 
 export const loginApi = async (
   _payload: LoginRequest,
-): Promise<LoginResponse> => demoToken;
+): Promise<LoginResponse> => {
+  if (
+    _payload.email === demoUser.email &&
+    _payload.password === demoUser.password
+  ) {
+    return demoToken;
+  }
+
+  throw new Error("Wrong username or password");
+};

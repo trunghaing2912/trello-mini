@@ -10,6 +10,8 @@ import {
   type LoginResponse,
 } from "../api/authApi";
 
+export const AUTH_STORAGE_KEY = "trello.auth.v1";
+
 interface AuthState {
   user: AuthUser | null;
   token: string | null;
@@ -17,14 +19,15 @@ interface AuthState {
   error: string | null;
 }
 
-const authStorage = localStorage.getItem("auth");
-
-const savedAuth = authStorage ? JSON.parse(authStorage) : null;
+export interface PersistedAuth {
+  user: AuthUser;
+  token: string;
+}
 
 const initialState: AuthState = {
-  user: savedAuth?.user || null,
-  token: savedAuth?.token || null,
-  status: savedAuth?.user && savedAuth?.token ? "succeeded" : "idle",
+  user: null,
+  token: null,
+  status: "idle",
   error: null,
 };
 
@@ -37,22 +40,12 @@ export const login = createAsyncThunk<
 
   async (payload, { rejectWithValue }) => {
     try {
-      const data = await loginApi(payload);
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
-      return data;
+      return await loginApi(payload);
     } catch (error: unknown) {
-      if (typeof error === "object" && error !== null && "response" in error) {
-        const axiosError = error as {
-          response?: {
-            data?: {
-              message?: string;
-            };
-          };
-        };
-
-        return rejectWithValue(
-          axiosError.response?.data?.message || "Login failed",
-        );
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
       }
 
       return rejectWithValue("Login failed");
@@ -66,13 +59,17 @@ const authSlice = createSlice({
   initialState,
 
   reducers: {
+    restoreSession: (state, action: PayloadAction<PersistedAuth>) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.status = "succeeded";
+      state.error = null;
+    },
     logout: (state) => {
       state.user = null;
       state.token = null;
       state.error = null;
       state.status = "idle";
-
-      localStorage.removeItem("auth");
     },
 
     clearError: (state) => {
@@ -93,24 +90,19 @@ const authSlice = createSlice({
           state.user = action.payload.user;
           state.token = action.payload.token;
           state.status = "succeeded";
-
-          localStorage.setItem(
-            "auth",
-            JSON.stringify({
-              user: action.payload.user,
-              token: action.payload.token,
-            }),
-          );
+          state.error = null;
         },
       )
 
       .addCase(login.rejected, (state, action) => {
-        state.error = action.payload ?? "Login failed";
+        state.user = null;
+        state.token = null;
         state.status = "failed";
+        state.error = action.payload ?? "Login failed";
       });
   },
 });
 
-export const { logout, clearError } = authSlice.actions;
+export const { restoreSession, logout, clearError } = authSlice.actions;
 
 export default authSlice.reducer;
