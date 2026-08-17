@@ -17,10 +17,14 @@ interface AuthState {
   error: string | null;
 }
 
+const authStorage = localStorage.getItem("auth");
+
+const savedAuth = authStorage ? JSON.parse(authStorage) : null;
+
 const initialState: AuthState = {
-  user: null,
-  token: null,
-  status: "idle",
+  user: savedAuth?.user || null,
+  token: savedAuth?.token || null,
+  status: savedAuth?.user && savedAuth?.token ? "succeeded" : "idle",
   error: null,
 };
 
@@ -67,6 +71,8 @@ const authSlice = createSlice({
       state.token = null;
       state.error = null;
       state.status = "idle";
+
+      localStorage.removeItem("auth");
     },
 
     clearError: (state) => {
@@ -87,6 +93,14 @@ const authSlice = createSlice({
           state.user = action.payload.user;
           state.token = action.payload.token;
           state.status = "succeeded";
+
+          localStorage.setItem(
+            "auth",
+            JSON.stringify({
+              user: action.payload.user,
+              token: action.payload.token,
+            }),
+          );
         },
       )
 

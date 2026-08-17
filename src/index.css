@@ -134,3 +134,236 @@ input:focus-visible {
     padding: 28px 22px;
   }
 }
+
+.not-found-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  padding: 32px 24px;
+  background:
+    radial-gradient(circle at 15% 20%, rgb(99 91 255 / 18%), transparent 28%),
+    radial-gradient(circle at 88% 82%, rgb(91 187 255 / 16%), transparent 24%),
+    #f7f8fc;
+}
+
+.not-found-card {
+  width: min(100%, 680px);
+  text-align: center;
+}
+
+.not-found-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #172b4d;
+  text-decoration: none;
+}
+
+.not-found-brand span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 10px;
+  background: #635bff;
+  color: white;
+  font-size: 19px;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgb(99 91 255 / 24%);
+}
+
+.not-found-illustration {
+  position: relative;
+  display: grid;
+  width: min(100%, 460px);
+  height: 250px;
+  margin: 26px auto 4px;
+  place-items: center;
+}
+
+.not-found-number {
+  position: relative;
+  z-index: 2;
+  color: #635bff;
+  font-size: clamp(92px, 20vw, 150px);
+  font-weight: 900;
+  letter-spacing: -.08em;
+  line-height: 1;
+  text-shadow: 0 14px 30px rgb(99 91 255 / 18%);
+}
+
+.not-found-orbit {
+  position: absolute;
+  border: 1px solid rgb(99 91 255 / 18%);
+  border-radius: 50%;
+}
+
+.not-found-orbit-one {
+  width: 390px;
+  height: 180px;
+  transform: rotate(-8deg);
+}
+
+.not-found-orbit-two {
+  width: 320px;
+  height: 225px;
+  transform: rotate(14deg);
+}
+
+.not-found-card-shape {
+  position: absolute;
+  z-index: 3;
+  width: 54px;
+  height: 40px;
+  border: 4px solid white;
+  border-radius: 9px;
+  background: #5bbfff;
+  box-shadow: 0 8px 18px rgb(23 43 77 / 16%);
+}
+
+.not-found-card-shape::after {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  width: 24px;
+  height: 4px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 75%);
+  content: "";
+}
+
+.not-found-card-one {
+  top: 39px;
+  right: 42px;
+  transform: rotate(12deg);
+}
+
+.not-found-card-two {
+  bottom: 32px;
+  left: 38px;
+  background: #ffab57;
+  transform: rotate(-10deg);
+}
+
+.not-found-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #635bff;
+}
+
+.not-found-dot-one {
+  top: 55px;
+  left: 82px;
+}
+
+.not-found-dot-two {
+  right: 84px;
+  bottom: 54px;
+  width: 8px;
+  height: 8px;
+  background: #ffab57;
+}
+
+.not-found-eyebrow {
+  margin: 0 0 9px;
+  color: #635bff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.not-found-card h1 {
+  margin: 0;
+  color: #172b4d;
+  font-size: clamp(30px, 6vw, 44px);
+  letter-spacing: -.03em;
+}
+
+.not-found-description {
+  max-width: 510px;
+  margin: 14px auto 0;
+  color: #6b778c;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.not-found-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.not-found-primary,
+.not-found-secondary {
+  min-width: 132px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.not-found-primary {
+  background: #635bff;
+  color: white;
+  box-shadow: 0 7px 18px rgb(99 91 255 / 24%);
+}
+
+.not-found-primary:hover {
+  background: #5147d9;
+}
+
+.not-found-secondary {
+  background: #e9ebf2;
+  color: #44546f;
+}
+
+.not-found-secondary:hover {
+  background: #dfe2ea;
+}
+
+.not-found-primary:focus-visible,
+.not-found-secondary:focus-visible,
+.not-found-brand:focus-visible {
+  outline: 3px solid rgb(99 91 255 / 35%);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .not-found-page {
+    padding: 24px 18px;
+  }
+
+  .not-found-illustration {
+    height: 210px;
+  }
+
+  .not-found-orbit-one {
+    width: 300px;
+    height: 145px;
+  }
+
+  .not-found-orbit-two {
+    width: 250px;
+    height: 190px;
+  }
+
+  .not-found-card-one {
+    right: 12px;
+  }
+
+  .not-found-card-two {
+    left: 12px;
+  }
+
+  .not-found-actions {
+    flex-direction: column;
+  }
+}

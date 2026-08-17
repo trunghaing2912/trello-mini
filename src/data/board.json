@@ -1,0 +1,154 @@
+{
+  "title": "Website tuyển dụng",
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog",
+      "cards": [
+        {
+          "id": "1",
+          "title": "Thiết kế trang đăng nhập",
+          "labels": ["Design"],
+          "comments": 3,
+          "members": ["AN"],
+          "description": "Thiết kế màn hình đăng nhập rõ ràng, thân thiện và đồng bộ với bộ nhận diện của Trello Mini.",
+          "checklist": [
+            { "id": "login-wireframe", "text": "Hoàn thiện wireframe", "completed": true },
+            { "id": "login-states", "text": "Thiết kế trạng thái lỗi và loading", "completed": false },
+            { "id": "login-mobile", "text": "Kiểm tra giao diện mobile", "completed": false }
+          ],
+          "activity": {
+            "author": "An Nguyễn",
+            "initials": "AN",
+            "message": "đã tạo công việc này trong Backlog",
+            "timeLabel": "1 ngày trước",
+            "dateTime": "2026-08-16T10:15:00+07:00"
+          }
+        },
+        {
+          "id": "2",
+          "title": "Chuẩn hóa cấu trúc Redux store",
+          "labels": ["Frontend"],
+          "comments": 2,
+          "members": ["HN"],
+          "description": "Tổ chức lại Redux store theo từng feature, chuẩn hóa typed hooks và cách quản lý trạng thái bất đồng bộ.",
+          "checklist": [
+            { "id": "redux-slices", "text": "Tách slice theo feature", "completed": true },
+            { "id": "redux-hooks", "text": "Chuẩn hóa typed hooks", "completed": true },
+            { "id": "redux-docs", "text": "Viết tài liệu cấu trúc store", "completed": false }
+          ],
+          "activity": {
+            "author": "Hải Nguyễn",
+            "initials": "HN",
+            "message": "đã cập nhật mô tả công việc",
+            "timeLabel": "6 giờ trước",
+            "dateTime": "2026-08-17T07:30:00+07:00"
+          }
+        }
+      ]
+    },
+    {
+      "id": "progress",
+      "title": "Đang thực hiện",
+      "cards": [
+        {
+          "id": "3",
+          "title": "Dựng layout Kanban",
+          "labels": ["Frontend", "Ưu tiên"],
+          "dueDate": "18/08/2026",
+          "dueStatus": "Sắp đến hạn",
+          "comments": 5,
+          "members": ["HN", "AN"],
+          "description": "Xây dựng giao diện bảng Kanban responsive, bao gồm các cột công việc, thẻ task và trạng thái tương ứng theo thiết kế đã thống nhất.",
+          "checklist": [
+            { "id": "kanban-columns", "text": "Dựng giao diện các cột", "completed": true },
+            { "id": "kanban-cards", "text": "Hoàn thiện component task card", "completed": true },
+            { "id": "kanban-responsive", "text": "Kiểm tra responsive trên mobile", "completed": false }
+          ],
+          "activity": {
+            "author": "Hải Nguyễn",
+            "initials": "HN",
+            "message": "đã thêm công việc này vào Đang thực hiện",
+            "timeLabel": "2 giờ trước",
+            "dateTime": "2026-08-17T09:30:00+07:00"
+          }
+        },
+        {
+          "id": "4",
+          "title": "Tạo bộ component dùng chung",
+          "labels": ["Frontend"],
+          "comments": 4,
+          "members": ["HN"],
+          "description": "Xây dựng các component cơ bản có thể tái sử dụng như Button, Avatar, Badge, Modal và FormField.",
+          "checklist": [
+            { "id": "components-button", "text": "Hoàn thiện Button và Badge", "completed": true },
+            { "id": "components-modal", "text": "Hoàn thiện Modal", "completed": false },
+            { "id": "components-docs", "text": "Thêm ví dụ sử dụng component", "completed": false }
+          ],
+          "activity": {
+            "author": "Hải Nguyễn",
+            "initials": "HN",
+            "message": "đã bắt đầu công việc này",
+            "timeLabel": "4 giờ trước",
+            "dateTime": "2026-08-17T08:00:00+07:00"
+          }
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "cards": [
+        {
+          "id": "5",
+          "title": "Kiểm tra responsive",
+          "labels": ["QA"],
+          "dueDate": "20/08/2026",
+          "dueStatus": "Còn 3 ngày",
+          "comments": 6,
+          "members": ["AN"],
+          "description": "Kiểm tra giao diện trên desktop, tablet và mobile; ghi nhận các lỗi tràn nội dung hoặc khó thao tác.",
+          "checklist": [
+            { "id": "responsive-desktop", "text": "Kiểm tra desktop 1440px", "completed": true },
+            { "id": "responsive-tablet", "text": "Kiểm tra tablet 768px", "completed": true },
+            { "id": "responsive-mobile", "text": "Kiểm tra mobile 375px", "completed": true },
+            { "id": "responsive-report", "text": "Tổng hợp báo cáo lỗi", "completed": false }
+          ],
+          "activity": {
+            "author": "An Nguyễn",
+            "initials": "AN",
+            "message": "đã chuyển công việc này sang Review",
+            "timeLabel": "45 phút trước",
+            "dateTime": "2026-08-17T11:15:00+07:00"
+          }
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "title": "Hoàn thành",
+      "cards": [
+        {
+          "id": "6",
+          "title": "Khởi tạo dự án React",
+          "labels": ["Setup"],
+          "comments": 1,
+          "members": ["HN"],
+          "description": "Khởi tạo dự án React với Vite, cấu hình TypeScript, Redux Toolkit và React Router cho các màn hình chính.",
+          "checklist": [
+            { "id": "setup-vite", "text": "Khởi tạo Vite và TypeScript", "completed": true },
+            { "id": "setup-redux", "text": "Cài đặt Redux Toolkit", "completed": true },
+            { "id": "setup-router", "text": "Cấu hình React Router", "completed": true }
+          ],
+          "activity": {
+            "author": "Hải Nguyễn",
+            "initials": "HN",
+            "message": "đã hoàn thành công việc này",
+            "timeLabel": "3 ngày trước",
+            "dateTime": "2026-08-14T16:45:00+07:00"
+          }
+        }
+      ]
+    }
+  ]
+}

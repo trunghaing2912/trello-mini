@@ -24,7 +24,8 @@ const Login = () => {
       ).unwrap();
 
       console.log("Login success:", result);
-      navigate("/");
+      localStorage.setItem("auth", JSON.stringify(result));
+      navigate("/board");
     } catch (error) {
       console.error("Login failed:", error);
     }
