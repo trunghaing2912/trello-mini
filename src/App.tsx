@@ -1,4 +1,3 @@
-import "./App.css";
 import boardJson from "./data/board.json";
 import { AppShell } from "./components/AppShell";
 import { Board } from "./components/Board";
