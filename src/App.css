@@ -1,0 +1,404 @@
+.app-shell {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #172b4d;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e8ef;
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: flex;
+  min-width: 208px;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.brand-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9px;
+  background: #635bff;
+  color: white;
+}
+
+.global-search {
+  position: relative;
+  width: min(420px, 42vw);
+}
+
+.global-search span {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #6b778c;
+}
+
+.global-search input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border: 1px solid #dfe2e8;
+  border-radius: 10px;
+  outline: none;
+  background: #f7f8fa;
+}
+
+.global-search input:focus {
+  border-color: #635bff;
+  box-shadow: 0 0 0 3px rgb(99 91 255 / 12%);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.icon-button,
+.avatar,
+.member {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: transparent;
+  color: #44546f;
+  cursor: pointer;
+}
+
+.icon-button:hover,
+.nav-item:hover,
+.ghost-button:hover {
+  background: #eef0f6;
+}
+
+.avatar,
+.member {
+  border: 2px solid white;
+  background: #dcd9ff;
+  color: #4037aa;
+  font-weight: 750;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  font-size: 12px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: calc(100vh - 64px);
+}
+
+.sidebar {
+  padding: 24px 16px;
+  border-right: 1px solid #e5e8ef;
+  background: white;
+}
+
+.nav-label {
+  margin: 18px 12px 8px;
+  color: #8993a4;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #44546f;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  background: #efeeff;
+  color: #5147d9;
+  font-weight: 700;
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  margin-top: 32px;
+  padding: 14px;
+  border: 1px solid #e1dfff;
+  border-radius: 12px;
+  background: #f8f7ff;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sidebar-footer strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.main-content {
+  min-width: 0;
+  padding: 28px 32px 40px;
+}
+
+.board-heading,
+.board-toolbar,
+.column-heading,
+.card-meta,
+.members {
+  display: flex;
+  align-items: center;
+}
+
+.board-heading {
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.board-heading h1 {
+  margin: 0 0 4px;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.eyebrow {
+  margin: 0;
+  color: #7a869a;
+  font-size: 13px;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button,
+.add-card {
+  border: 0;
+  border-radius: 9px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.primary-button {
+  padding: 10px 16px;
+  background: #635bff;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 5px 14px rgb(99 91 255 / 22%);
+}
+
+.board-toolbar {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 12px;
+  border: 1px solid #e5e8ef;
+  border-radius: 12px;
+  background: white;
+}
+
+.secondary-button,
+.ghost-button {
+  padding: 8px 12px;
+  background: #f4f5f7;
+  color: #44546f;
+}
+
+.ghost-button {
+  background: transparent;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.member {
+  width: 30px;
+  height: 30px;
+  margin-left: -7px;
+  font-size: 9px;
+}
+
+.member:first-child {
+  margin-left: 0;
+}
+
+.board-scroll {
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.board-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  align-items: start;
+  gap: 16px;
+  min-width: 1100px;
+}
+
+.board-column {
+  padding: 12px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  background: #eff1f5;
+}
+
+.column-heading {
+  justify-content: space-between;
+  padding: 2px 4px 12px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.card-count {
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: #dfe2e8;
+  color: #5e6c84;
+  font-size: 11px;
+}
+
+.task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task-card {
+  padding: 14px;
+  border: 1px solid #e5e8ef;
+  border-radius: 11px;
+  background: white;
+  box-shadow: 0 1px 2px rgb(23 43 77 / 6%);
+}
+
+.task-card:hover {
+  border-color: #c8c5ff;
+  box-shadow: 0 6px 16px rgb(23 43 77 / 8%);
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.label {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #e7f0ff;
+  color: #1d63b7;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.label:nth-child(2n) {
+  background: #fff0db;
+  color: #a55300;
+}
+
+.task-title {
+  margin: 0 0 14px;
+  color: #263752;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.card-meta {
+  min-height: 24px;
+  gap: 10px;
+  color: #7a869a;
+  font-size: 11px;
+}
+
+.card-meta .members {
+  margin-left: auto;
+}
+
+.add-card {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 10px;
+  background: transparent;
+  color: #5e6c84;
+  text-align: left;
+}
+
+.add-card:hover {
+  background: #e1e4ea;
+}
+
+@media (max-width: 800px) {
+  .topbar {
+    gap: 12px;
+    padding: 0 14px;
+  }
+
+  .brand {
+    min-width: auto;
+  }
+
+  .brand-name,
+  .global-search,
+  .sidebar {
+    display: none;
+  }
+
+  .workspace {
+    display: block;
+  }
+
+  .main-content {
+    padding: 22px 16px 32px;
+  }
+
+  .board-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .board-heading .primary-button {
+    align-self: flex-start;
+  }
+}

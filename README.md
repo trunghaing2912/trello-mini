@@ -1,33 +1,51 @@
-# React + TypeScript + Vite
+# Trello Mini
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Ứng dụng Kanban dùng để luyện React hooks, Redux Toolkit và quản lý server state. Dự án hiện có layout responsive và đang triển khai milestone đầu tiên: authentication và protected routes.
 
-Currently, two official plugins are available:
+## Công nghệ
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React + TypeScript + Vite
+- Redux Toolkit + React Redux
+- React Router
+- CSS thuần
 
-## React Compiler
+## Chạy dự án
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-# trello-mini
+Build production:
+
+```bash
+npm run build
+```
+
+## Tài liệu dự án
+
+- [REQUIREMENTS.md](./REQUIREMENTS.md): requirement và tiêu chí nghiệm thu.
+- [PROGRESS.md](./PROGRESS.md): tiến độ hiện tại và việc tiếp theo.
+
+## Cấu trúc hiện tại
+
+```text
+src/
+├── api/          # Hàm mô phỏng API
+├── components/   # Layout và component giao diện
+├── redux/        # Store, typed hooks và slices
+├── router/       # Routes của ứng dụng
+├── App.tsx
+└── main.tsx
+```
+
+## Làm việc trên thiết bị mới
+
+```bash
+git clone <repository-url>
+cd trello-mini
+npm install
+npm run dev
+```
+
+`node_modules`, `dist` và file chứa secret không được commit. Trước khi đổi thiết bị, cập nhật `PROGRESS.md`, commit và push thay đổi mới nhất.
