@@ -1,6 +1,6 @@
 # Progress
 
-Cập nhật lần cuối: **2026-08-17**
+Cập nhật lần cuối: **2026-08-19**
 
 ## Tổng quan
 
@@ -22,13 +22,14 @@ Cập nhật lần cuối: **2026-08-17**
 - [x] Typed hooks `useAppDispatch` và `useAppSelector`.
 - [x] `AuthState` và lifecycle `login.pending/fulfilled/rejected`.
 - [x] Form Login cơ bản và loading state.
+- [x] Validation cục bộ và accessibility cho Login.
 - [x] Route `/` và `/login` cơ bản.
 - [x] Module mock `loginApi`.
 
 ## Việc tiếp theo của Milestone 01
 
 - [ ] `loginApi` kiểm tra credentials, delay và reject khi sai.
-- [ ] Bổ sung validation email/password và accessibility theo requirement.
+- [x] Bổ sung validation email/password và accessibility theo requirement.
 - [ ] Thêm selectors và custom hook `useAuth`.
 - [ ] Thêm `restoreSession` và persistence bằng `trello.auth.v1`.
 - [ ] Thêm logout và lấy user thật từ Redux trong `AppShell`.

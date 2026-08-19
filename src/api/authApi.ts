@@ -7,7 +7,6 @@ export interface AuthUser {
   id: string;
   name: string;
   email: string;
-  password?: string;
 }
 
 export interface LoginResponse {
@@ -18,8 +17,7 @@ export interface LoginResponse {
 const demoUser: AuthUser = {
   id: "user-1",
   name: "Hải Nguyễn",
-  email: "hai@gmail.com",
-  password: "123456",
+  email: "demo@trello.local",
 };
 
 const demoToken: LoginResponse = {
@@ -28,19 +26,16 @@ const demoToken: LoginResponse = {
   user: {
     id: "user-1",
     name: "Hải Nguyễn",
-    email: "hai@gmail.com",
+    email: "demo@trello.local",
   },
 };
 
 export const loginApi = async (
   _payload: LoginRequest,
 ): Promise<LoginResponse> => {
-  if (
-    _payload.email === demoUser.email &&
-    _payload.password === demoUser.password
-  ) {
+  if (_payload.email === demoUser.email && _payload.password === "123456") {
     return demoToken;
   }
 
-  throw new Error("Wrong username or password");
+  throw new Error("Email hoặc mật khẩu không chính xác");
 };

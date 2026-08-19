@@ -245,18 +245,18 @@ helper này vào luồng login/logout.
 
 ## Ưu tiên cao — Validation và accessibility của Login
 
-- [ ] Thêm local state cho lỗi email và password.
-- [ ] Validate email bắt buộc và đúng định dạng cơ bản trước khi dispatch.
-- [ ] Validate password bắt buộc và có ít nhất 6 ký tự trước khi dispatch.
-- [ ] Hiển thị lỗi ngay dưới field tương ứng.
-- [ ] Dùng `useId` để tạo ID cho input và error message.
-- [ ] Input lỗi phải có `aria-invalid` và `aria-describedby`.
-- [ ] Dùng `useRef` để focus lại email sau khi đăng nhập thất bại.
-- [ ] Dùng `useEffect` cho side effect thật, ví dụ cập nhật `document.title`
+- [x] Thêm local state cho lỗi email và password.
+- [x] Validate email bắt buộc và đúng định dạng cơ bản trước khi dispatch.
+- [x] Validate password bắt buộc và có ít nhất 6 ký tự trước khi dispatch.
+- [x] Hiển thị lỗi ngay dưới field tương ứng.
+- [x] Dùng `useId` để tạo ID cho input và error message.
+- [x] Input lỗi phải có `aria-invalid` và `aria-describedby`.
+- [x] Dùng `useRef` để focus lại email sau khi đăng nhập thất bại.
+- [x] Dùng `useEffect` cho side effect thật, ví dụ cập nhật `document.title`
   hoặc xử lý focus sau lỗi đăng nhập.
-- [ ] Disable cả email, password và submit button khi `status === "loading"`.
-- [ ] Hiển thị thông tin tài khoản demo trên trang Login.
-- [ ] Form không hợp lệ tuyệt đối không được dispatch `login` thunk.
+- [x] Disable cả email, password và submit button khi `status === "loading"`.
+- [x] Hiển thị thông tin tài khoản demo trên trang Login.
+- [x] Form không hợp lệ tuyệt đối không được dispatch `login` thunk.
 
 ## Ưu tiên trung bình — Selectors và custom hook
 

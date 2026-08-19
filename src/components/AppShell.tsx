@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { logout } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import { clearStoredAuth } from "../redux/authStorage";
 
 type AppShellProps = {
   children: ReactNode;
@@ -15,12 +16,20 @@ const navButtonClasses =
 
 export function AppShell({ children }: AppShellProps) {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    clearStoredAuth();
     dispatch(logout());
     navigate("/login");
   };
+
+  const shortName =
+    user?.name
+      .split(" ")
+      .map((v) => v.charAt(0))
+      .join("") || null;
 
   return (
     <div className="min-h-screen bg-[#f7f8fc] text-[#172b4d]">
@@ -68,7 +77,7 @@ export function AppShell({ children }: AppShellProps) {
               className="grid size-[38px] shrink-0 cursor-pointer list-none place-items-center rounded-full border-2 border-white bg-[#dcd9ff] text-xs font-[750] text-[#4037aa] shadow-[0_0_0_1px_#d9dce4] transition hover:-translate-y-px hover:shadow-[0_0_0_3px_rgba(99,91,255,0.20)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[rgba(99,91,255,0.30)] group-open:-translate-y-px group-open:shadow-[0_0_0_3px_rgba(99,91,255,0.20)] [&::-webkit-details-marker]:hidden"
               aria-label="Mở menu tài khoản Hải Nguyễn"
             >
-              HN
+              {shortName}
             </summary>
 
             <div className="absolute top-[calc(100%+12px)] right-0 z-30 w-[min(290px,calc(100vw-28px))] rounded-[14px] border border-[#e1e4ea] bg-white p-2.5 shadow-[0_18px_48px_rgba(23,43,77,0.20)] before:absolute before:-top-1.5 before:right-3.5 before:size-[11px] before:rotate-45 before:border-t before:border-l before:border-[#e1e4ea] before:bg-white before:content-['']">
@@ -81,14 +90,14 @@ export function AppShell({ children }: AppShellProps) {
                   className="grid size-[42px] shrink-0 place-items-center rounded-full bg-[#dcd9ff] text-xs font-extrabold text-[#4037aa]"
                   aria-hidden="true"
                 >
-                  HN
+                  {shortName}
                 </span>
                 <div className="min-w-0">
                   <strong className="mb-[3px] block text-[13px] text-[#263752]">
-                    Hải Nguyễn
+                    {user?.name}
                   </strong>
                   <span className="block max-w-[190px] overflow-hidden text-[11px] text-ellipsis whitespace-nowrap text-[#7a869a]">
-                    hai.nguyen@example.com
+                    {user?.email}
                   </span>
                 </div>
               </div>
